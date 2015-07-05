@@ -11,9 +11,9 @@ public class Player implements MouseListener{
 	Color color;
 	
 	public Player(int gameWidth, int gameHeight){	
-		color = Color.red;
-		width = 20;
-		height = 20;
+		color = Color.decode("#990000");
+		width = 40;
+		height = 40;
 		this.x = gameWidth/2 - (this.width/2);
 		this.y = gameHeight/2 - (this.height/2);
 	}
