@@ -38,30 +38,41 @@ public class Enemy {
 		
 		switch (direction){
 			case 1:        //right up
+				
+				if(x + width == gameWidth)
+					direction = 4;
+				if(y == 0)
+					direction = 2;
 				this.x++;
 				this.y++;
 				break;
 			case 2:
+				
+				if(x + width == gameWidth) 
+					direction = 3;
+				if(y + height == gameHeight) 
+					direction = 1;
 				this.x++;  //right down
 				this.y--;
-				if(x + width == gameWidth){
-					direction = 3;
-				}
-				if(y + height == gameHeight){
-					direction = 1;
-				}
 				break;
 			case 3:
-				this.x--;  //left down
-				this.y--;
+				
 				if(x == 0){
 					direction = 2;
 				}
 				if(y + height == gameHeight){
 					direction = 4;
 				}
+				this.x--;  //left down
+				this.y--;
 				break;
 			case 4:
+				
+				if (x == 0){
+					direction = 1;
+				}
+				if (y == 0)
+					direction = 3;
 				this.x--;  //left up
 				this.y++;
 				break;
