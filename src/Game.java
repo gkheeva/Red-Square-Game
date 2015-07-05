@@ -34,8 +34,9 @@ public class Game extends JPanel{
 	
 	@Override
 	public void paint(Graphics g){
-		
+		border.paint(g);
 		player.paint(g);
+		
 		enemies[0].paint(g);
 		enemies[1].paint(g);
 		enemies[2].paint(g);
