@@ -24,9 +24,8 @@ public class GameController {
 		while(running){
 			game.repaint();
 			game.move();
+			game.checkCollision();
 			Thread.sleep(10);
-		}
-		
+		}	
 	}
-
 }
