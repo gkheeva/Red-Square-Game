@@ -14,13 +14,13 @@ public class Game extends JPanel{
 		this.player = new Player(gameWidth, gameHeight);
 		this.border = new Border(gameWidth, gameHeight);
 		enemies = new Enemy[4];
-		enemies[0] = new Enemy((int) Math.ceil(gameWidth*0.18), (int) Math.ceil(gameHeight*0.2),
+		enemies[0] = new Enemy((int) Math.ceil(gameWidth*0.04), (int) Math.ceil(gameHeight*0.2),
 				50, 50, gameWidth, gameHeight);
-		enemies[1] = new Enemy((int) Math.ceil(gameWidth*0.8) - 40, (int) Math.ceil(gameHeight*0.2),
+		enemies[1] = new Enemy((int) Math.ceil(gameWidth*0.95) - 40, (int) Math.ceil(gameHeight*0.2),
 				50, 40, gameWidth, gameHeight);
-		enemies[2] = new Enemy((int) Math.ceil(gameWidth*0.2), (int) Math.ceil(gameHeight*0.8) - 40,
+		enemies[2] = new Enemy((int) Math.ceil(gameWidth*0.03), (int) Math.ceil(gameHeight*0.8) - 40,
 				25, 50, gameWidth, gameHeight);
-		enemies[3] = new Enemy((int) Math.ceil(gameWidth*0.77) - 40, (int) Math.ceil(gameHeight*0.8),
+		enemies[3] = new Enemy((int) Math.ceil(gameWidth*0.97) - 40, (int) Math.ceil(gameHeight*0.8),
 				75, 15, gameWidth, gameHeight);
 		}
 	

@@ -6,8 +6,8 @@ import javax.swing.JFrame;
 public class GameController {
 
 	static Game game;
-	static int width = 400, height = 400;
-	static String frameTitle = "myGame";
+	static int width = 300, height = 300;
+	static String frameTitle = "Red Square Game";
 	static boolean running;
 	
 	public static void main(String[] args) throws InterruptedException {
@@ -26,6 +26,6 @@ public class GameController {
 			game.move();
 			game.checkCollision();
 			Thread.sleep(10);
-		}	
+		}
 	}
 }

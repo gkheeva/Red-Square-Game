@@ -12,7 +12,7 @@ public class Enemy {
 	
 	public Enemy(int startX, int startY, int width, int height, int gameWidth, int gameHeight){
 		this.gameHeight = gameHeight;
-		this.gameHeight = gameWidth;
+		this.gameWidth = gameWidth;
 		this.x = startX;
 		this.y = startY;
 		this.width = width;
@@ -37,58 +37,42 @@ public class Enemy {
 		
 		
 		switch (direction){
-			case 1:        //right up
-				
-				if(x + width == gameWidth)
-					direction = 4;
-				if(y == 0)
-					direction = 2;
+			case 1:        //right down
 				this.x++;
 				this.y++;
+				if(x + width == gameWidth)
+					direction = 4;
+				if(y + height == gameHeight)
+					direction = 2;
 				break;
 			case 2:
-				
+				this.x++;  //right up
+				this.y--;
 				if(x + width == gameWidth) 
 					direction = 3;
-				if(y + height == gameHeight) 
+				if(y == 0) 
 					direction = 1;
-				this.x++;  //right down
-				this.y--;
 				break;
 			case 3:
-				
+				this.x--;  //left up
+				this.y--;
 				if(x == 0){
 					direction = 2;
 				}
-				if(y + height == gameHeight){
+				if(y == 0){
 					direction = 4;
 				}
-				this.x--;  //left down
-				this.y--;
 				break;
 			case 4:
-				
+				this.x--;  //left down
+				this.y++;
 				if (x == 0){
 					direction = 1;
 				}
-				if (y == 0)
+				if (y + height == gameHeight)
 					direction = 3;
-				this.x--;  //left up
-				this.y++;
 				break;
 		}
-		
-		if (x == 0 && direction == 3){   //going left down
-			direction = 2;
-		}
-		
-		if (x == 0 && direction == 4){  //going left up
-			direction = 1;
-		}
-		
-		
-		
-		
 	}
 	
 	public void paint(Graphics g){
