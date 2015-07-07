@@ -1,9 +1,13 @@
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import javax.swing.JPanel;
+
+import org.omg.PortableServer.POAPackage.ObjectAlreadyActive;
 
 
 @SuppressWarnings("serial")
@@ -13,9 +17,17 @@ public class Game extends JPanel{
 	Player player;
 	Border border;
 	boolean clickedOnPlayer;
+	boolean running;
+	boolean gameOver;
+	double timeSurvived = 0;
+	int gameWidth, gameHeight;
 	
 	public Game(int gameWidth, int gameHeight){
+		running = true;
+		gameOver = false;
 		clickedOnPlayer = false;
+		this.gameHeight = gameHeight;
+		this.gameWidth = gameWidth;
 		this.player = new Player(gameWidth, gameHeight);
 		this.border = new Border(gameWidth, gameHeight);
 		enemies = new Enemy[4];
@@ -59,6 +71,7 @@ public class Game extends JPanel{
 				if(mx >= player.x && mx <= (player.x + player.width) &&
 						my >= player.y && my <= player.y + player.height){
 					clickedOnPlayer = true;
+					//move enemies;
 				}
 			}
 			
@@ -88,21 +101,43 @@ public class Game extends JPanel{
 		enemies[2].move();
 		enemies[3].move();
 		player.move();
+		if(collisionWithEnemy()){
+			System.out.println("GameOver");
+			running = false;
+		}
 	}
 	
-	public void checkCollision(){
-		//TODO
+	public void gameOver (double time){
+		gameOver = true;
+		timeSurvived = time;
+	}
+	
+	public boolean collisionWithEnemy(){
+		for (int i = 0; i < enemies.length; i++){
+			if(player.getBounds().intersects(enemies[i].getBounds()))
+				return true;
+		}
+		return false;
 	}
 	
 	@Override
 	public void paint(Graphics g){
-		border.paint(g);
-		player.paint(g);
-		
-		enemies[0].paint(g);
-		enemies[1].paint(g);
-		enemies[2].paint(g);
-		enemies[3].paint(g);
+		if(!gameOver){
+			border.paint(g);
+			player.paint(g);
+			enemies[0].paint(g);
+			enemies[1].paint(g);
+			enemies[2].paint(g);
+			enemies[3].paint(g);
+		}
+		else{
+			g.setColor(Color.WHITE);
+			g.fillRect(0, 0, gameWidth, gameHeight);
+			g.setColor(Color.BLACK);
+			Font font = new Font(Font.MONOSPACED, Font.BOLD, 19);
+			g.setFont(font);
+			String str = "Survived: " + timeSurvived + " seconds.";
+			g.drawString(str, 20, gameHeight/2 - 5);
+		}
 	}
-	
 }

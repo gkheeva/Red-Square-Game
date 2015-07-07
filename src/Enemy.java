@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 
 public class Enemy {
@@ -73,6 +74,10 @@ public class Enemy {
 					direction = 3;
 				break;
 		}
+	}
+	
+	public Rectangle getBounds(){
+		return new Rectangle(x, y, width, height);
 	}
 	
 	public void paint(Graphics g){

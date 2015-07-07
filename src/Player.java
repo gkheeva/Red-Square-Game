@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 
 public class Player {
@@ -20,6 +21,10 @@ public class Player {
 	
 	public void move(){
 		
+	}
+	
+	public Rectangle getBounds(){
+		return new Rectangle(x, y, width, height);
 	}
 	
 	public void paint(Graphics g){
