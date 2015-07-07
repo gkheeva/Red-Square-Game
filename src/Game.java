@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.swing.JPanel;
 
@@ -21,10 +23,13 @@ public class Game extends JPanel{
 	boolean gameOver;
 	double timeSurvived = 0;
 	int gameWidth, gameHeight;
+	boolean startGame;
+	double timeStarted;
 	
 	public Game(int gameWidth, int gameHeight){
 		running = true;
 		gameOver = false;
+		startGame = false;
 		clickedOnPlayer = false;
 		this.gameHeight = gameHeight;
 		this.gameWidth = gameWidth;
@@ -71,6 +76,8 @@ public class Game extends JPanel{
 				if(mx >= player.x && mx <= (player.x + player.width) &&
 						my >= player.y && my <= player.y + player.height){
 					clickedOnPlayer = true;
+					if(startGame != true)
+						startGame();
 					//move enemies;
 				}
 			}
@@ -96,6 +103,7 @@ public class Game extends JPanel{
 	}
 	
 	public void move(){
+		if(startGame){
 		enemies[0].move();
 		enemies[1].move();
 		enemies[2].move();
@@ -105,6 +113,14 @@ public class Game extends JPanel{
 			System.out.println("GameOver");
 			running = false;
 		}
+		}
+	}
+	
+	public void startGame(){
+		startGame = true;
+		Calendar cal = Calendar.getInstance();
+		Date time1 = cal.getTime();
+		timeStarted = time1.getTime();
 	}
 	
 	public void gameOver (double time){
@@ -142,6 +158,11 @@ public class Game extends JPanel{
 			g.setFont(font);
 			String str = "Survived: " + timeSurvived + " seconds.";
 			g.drawString(str, 20, gameHeight/2 - 5);
+		}
+		
+		if(!startGame){
+			g.setColor(Color.white);
+			g.drawString("Drag the red square to start", 75, 20);
 		}
 	}
 }

@@ -12,10 +12,6 @@ public class GameController {
 	static String frameTitle = "Red Square Game";
 	
 	public static void main(String[] args) throws InterruptedException {
-		Calendar cal = Calendar.getInstance();
-		Date time1 = cal.getTime();
-		long start = time1.getTime();
-		
 		game = new Game(width, height);
 		JFrame frame = new JFrame(frameTitle);
 		
@@ -31,10 +27,10 @@ public class GameController {
 			game.move();
 			Thread.sleep(10);
 		}
-		cal = Calendar.getInstance();
+		Calendar cal = Calendar.getInstance();
 		Date time2 = cal.getTime();
 		long end = time2.getTime();
-		double time = end - start;
+		double time = end - game.timeStarted;
 		double survivedTime = (time/1000);
 		game.gameOver(survivedTime);
 		game.repaint();
