@@ -101,7 +101,7 @@ public class Game extends JPanel{
 		enemies[2].move();
 		enemies[3].move();
 		player.move();
-		if(collisionWithEnemy()){
+		if(collision()){
 			System.out.println("GameOver");
 			running = false;
 		}
@@ -112,9 +112,13 @@ public class Game extends JPanel{
 		timeSurvived = time;
 	}
 	
-	public boolean collisionWithEnemy(){
+	public boolean collision(){
 		for (int i = 0; i < enemies.length; i++){
 			if(player.getBounds().intersects(enemies[i].getBounds()))
+				return true;
+		}
+		for (int i = 0; i < border.getBounds().length; i++){
+			if(player.getBounds().intersects(border.getBounds()[i]))
 				return true;
 		}
 		return false;

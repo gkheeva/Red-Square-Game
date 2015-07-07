@@ -25,6 +25,7 @@ public class GameController {
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		
 		while(game.running){
 			game.repaint();
 			game.move();
@@ -33,7 +34,8 @@ public class GameController {
 		cal = Calendar.getInstance();
 		Date time2 = cal.getTime();
 		long end = time2.getTime();
-		double survivedTime = (end - start)/1000;
+		double time = end - start;
+		double survivedTime = (time/1000);
 		game.gameOver(survivedTime);
 		game.repaint();
 	}
