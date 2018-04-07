@@ -12,4 +12,4 @@ This is a game where the player has to control his red square and save it from h
 
 ### Preview:
 
-![alt text](https://github.com/gkheeva/TracerGame/blob/master/img/game.png)
+![alt text](https://github.com/gkheeva/Red-Square-Game/blob/master/img/preview.png)
